@@ -9,15 +9,26 @@ This file creates your application.
 from intro_to_flask import app
 from flask import Flask
 from flask import render_template, request, redirect, url_for
+from models import db
 #from flask.ext.mysqldb import MySQL
 #app = Flask(__name__)
 
 
 #mysql = MySQL(app)
 
-"""@app.route('/user/')
-def users():
-    cur = mysql.connection.cursor()
+@app.route('/testdb/')
+def testdb():
+    if db.session.query("1").from_statement("SELECT 1").all():
+        return 'It works.'
+    else:
+        return 'Something is broken'
+    
+    
+    
+    
+    
+    
+    """= mysql.connection.cursor()
     cur.execute('''SELECT userid FROM mysql.officer''')
     rv = cur.fetchall()
     return str(rv)
