@@ -5,15 +5,17 @@ Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
 This file creates your application.
 """
 
-from intro_to_flask import app
+#from intro_to_flask import app
 from flask import Flask
 from flask import render_template, request, redirect, url_for
 from models import db
-from forms import ContactForm
+import jinja2
+#from forms import ContactForm
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
+app.jinja_loader = jinja2.FileSystemLoader('templates')
 
-app.secret_key = "tkssmartkodecodeWorldProdigy232323421@1127@6206birthd#2342)2**("
+#app.secret_key = "tkssmartkodecodeWorldProdigy232323421@1127@6206birthd#2342)2**("
 
 
 #from flask.ext.mysqldb import MySQL
@@ -29,8 +31,7 @@ def testdb():
     else:
 	return 'something is broke'
 
-#if __name__ == '__main__':
-#    app.run(debug=True)
+
 ###
 # Routing for your application.
 ###
@@ -54,13 +55,11 @@ def profile(name=None):
 @app.route('/contact/', methods=['GET', 'POST'])
 def contact():
     """Render the website's contact page."""
-    form = ContactForm()
-    
+    #form = ContactForm()
     if request.method == 'POST':
         return 'Form Submitted.'
     elif request.method == 'GET':
         return render_template('contact.html',form=form)
-
 
 
 @app.route('/profile/edit/')
@@ -74,7 +73,8 @@ def profileedit(name=None):
 def login(name=None):
     """Render the website's login page."""
     return render_template('login.html',name=name)
-    #
+    
+    
 @app.route('/report/')
 def report(name=None):
     """Render the website's about page."""
@@ -87,20 +87,18 @@ def reportadd(name=None):
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
-  form = SignupForm()
+    form = SignupForm()
    
-  if request.method == 'POST':
-    if form.validate() == False:
-      return render_template('signup.html', form=form)
-    else:
-      new_officer = Officer(form.firstname.data, form.lastname.data, form.email.data, form.password.data)
-      db.session.add(new_officer)
-      db.session.commit()
-       
-      return "[1] Create a new user [2] sign in the user [3] redirect to the user's profile"
-   
-  elif request.method == 'GET':
-    return render_template('signup.html', form=form)
+    if request.method == 'POST':
+        if form.validate() == False:
+            return render_template('signup.html', form=form)
+        else:
+            new_officer = Officer(form.firstname.data, form.lastname.data, form.email.data, form.password.data)
+            db.session.add(new_officer)
+            db.session.commit()
+        return "[1] Create a new user [2] sign in the user [3] redirect to the user's profile"
+    elif request.method == 'GET':
+        return render_template('signup.html', form=form)
  ###
 # The functions below should be applicable to all Flask apps.
 ###
@@ -127,3 +125,6 @@ def add_header(response):
 def page_not_found(error):
     """Custom 404 page."""
     return render_template('404.html'), 404
+
+if __name__ == '__main__':
+    app.run(debug=True,host='0.0.0.0',port=9000)
