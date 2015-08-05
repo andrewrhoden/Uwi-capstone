@@ -11,6 +11,7 @@ from flask import Flask
 from flask import render_template, request, redirect, url_for
 from models import db
 
+
 #from flask.ext.mysqldb import MySQL
 #app = Flask(__name__)
 
