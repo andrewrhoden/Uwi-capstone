@@ -1,5 +1,23 @@
 {% extends "layout.html" %}
 {% block content %}
+	<h2>Contact</h2>
+	<form action="{{ url_for('contact') }}" method=post>
+	    {{ form.hidden_tag() }}
+	 
+	    {{ form.name.label }}
+	    {{ form.name }}
+	 
+	    {{ form.email.label }}
+	    {{ form.email }}
+	 
+	    {{ form.subject.label }}
+	    {{ form.subject }}
+	 
+	    {{ form.message.label }}
+	    {{ form.message }}
+	 
+	    {{ form.submit }}
+	</form>
 
 <h2>Contact The Development Team</h2>
 <form action="{{url_for('contact')}}" method=post>
@@ -23,3 +41,4 @@
  
 
 {% endblock %}
+<!-- {{ form.hidden_tag() }}  revisit -->

@@ -7,16 +7,24 @@ This file creates your application.
 
 #from intro_to_flask import app
 from flask import Flask
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
 from models import db
 import jinja2
-#from forms import ContactForm
+from forms import ContactForm
 
+#<<<<<<< HEAD
 app = Flask(__name__, template_folder='templates')
 app.jinja_loader = jinja2.FileSystemLoader('templates')
 
 #app.secret_key = "tkssmartkodecodeWorldProdigy232323421@1127@6206birthd#2342)2**("
 
+#=======
+#<<<<<<< HEAD
+#app.config['SECRET_KEY'] = '^534jskjfiuwrgskfmnb09872wvdbjm@76?*&'
+#=======
+app = Flask(__name__)
+
+app.secret_key = "tkssmartkodecodeWorldProdigy232323421@1127@6206birthd#2342)2**("
 
 #from flask.ext.mysqldb import MySQL
 #app = Flask(__name__)
@@ -54,6 +62,7 @@ def profile(name=None):
     
 @app.route('/contact/', methods=['GET', 'POST'])
 def contact():
+    form = ContactForm()
     """Render the website's contact page."""
     #form = ContactForm()
     if request.method == 'POST':

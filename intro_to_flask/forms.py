@@ -1,7 +1,10 @@
-from flask.ext.wtf import Form, TextField, TextAreaField, SubmitField, validators, ValidationError, PasswordField
+#<<<<<<< HEAD
+from flask.ext.wtf import Form , validators #, TextField, TextAreaField, SubmitField, validators, ValidationError, PasswordField
+from wtforms import TextField, BooleanField, TextAreaField, SubmitField
 from models import db, Officer
-from wtforms.validators import Required
+#from wtforms.validators import Required
 
+"""
 class SignupForm(Form):
   firstname = TextField("First name",  [validators.Required("Please enter your first name.")])
   lastname = TextField("Last name",  [validators.Required("Please enter your last name.")])
@@ -23,7 +26,19 @@ class SignupForm(Form):
       return False
     else:
       return True
+"""
+#=======
+#<<<<<<< HEAD
+#from wtforms import TextField, TextAreaField, SubmitField
+#from flask_wtf import Form
+ 
+#=======
+#from flask.ext.wtf import Form
 
+#from wtforms.validators import Required
+
+#>>>>>>> b5afde0820fdacffc665ee4a72db3e0fd3abf7f0
+#>>>>>>> 9a11b17c487508b577f33411dcf5017b8e19174c
 class ContactForm(Form):
   name = TextField("Name")
   email = TextField("Email")
