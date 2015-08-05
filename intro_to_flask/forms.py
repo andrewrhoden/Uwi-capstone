@@ -1,4 +1,5 @@
-from flask.ext.wtf import Form, TextField, TextAreaField, SubmitField
+from wtforms import TextField, TextAreaField, SubmitField
+from flask_wtf import Form
  
 class ContactForm(Form):
   name = TextField("Name")
