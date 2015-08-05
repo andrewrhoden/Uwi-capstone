@@ -2,7 +2,6 @@
 Flask Documentation:     http://flask.pocoo.org/docs/
 Jinja2 Documentation:    http://jinja.pocoo.org/2/documentation/
 Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
-
 This file creates your application.
 """
 
@@ -12,7 +11,13 @@ from flask import render_template, request, redirect, url_for, flash
 from models import db
 from forms import ContactForm
 
+<<<<<<< HEAD
 app.config['SECRET_KEY'] = '^534jskjfiuwrgskfmnb09872wvdbjm@76?*&'
+=======
+app = Flask(__name__)
+
+app.secret_key = "tkssmartkodecodeWorldProdigy232323421@1127@6206birthd#2342)2**("
+>>>>>>> b5afde0820fdacffc665ee4a72db3e0fd3abf7f0
 
 #from flask.ext.mysqldb import MySQL
 #app = Flask(__name__)
@@ -51,11 +56,19 @@ def profile(name=None):
     
 @app.route('/contact/', methods=['GET', 'POST'])
 def contact():
+<<<<<<< HEAD
     form = ContactForm()
     
     if request.method == 'POST':
         return 'Form posted.'
 
+=======
+    """Render the website's contact page."""
+    form = ContactForm()
+    
+    if request.method == 'POST':
+        return 'Form Submitted.'
+>>>>>>> b5afde0820fdacffc665ee4a72db3e0fd3abf7f0
     elif request.method == 'GET':
         return render_template('contact.html',form=form)
 
@@ -125,5 +138,3 @@ def add_header(response):
 def page_not_found(error):
     """Custom 404 page."""
     return render_template('404.html'), 404
-
-
