@@ -10,7 +10,8 @@ from flask import Flask
 from flask import render_template, request, redirect, url_for, flash
 from models import db
 import jinja2
-from forms import ContactForm
+from forms import ContactForm, ProfileForm
+from flask.ext.mail import Message, Mail
 
 #<<<<<<< HEAD
 app = Flask(__name__, template_folder='templates')
@@ -22,13 +23,21 @@ app.jinja_loader = jinja2.FileSystemLoader('templates')
 #<<<<<<< HEAD
 #app.config['SECRET_KEY'] = '^534jskjfiuwrgskfmnb09872wvdbjm@76?*&'
 #=======
-app = Flask(__name__)
+#app = Flask(__name__)
 
 app.secret_key = "tkssmartkodecodeWorldProdigy232323421@1127@6206birthd#2342)2**("
 
 #from flask.ext.mysqldb import MySQL
 #app = Flask(__name__)
 
+mail = Mail()
+app.config["MAIL_SERVER"] = "smtp.live.com"
+app.config["MAIL_PORT"] = 587
+app.config["MAIL_USE_SSL"] = True
+app.config["MAIL_USERNAME"] = 'uwimonaevals@outlook.com'
+app.config["MAIL_PASSWORD"] = 'uwimonas;'
+
+mail.init_app(app)
 
 #mysql = MySQL(app)
 
@@ -66,7 +75,19 @@ def contact():
     """Render the website's contact page."""
     #form = ContactForm()
     if request.method == 'POST':
-        return 'Form Submitted.'
+        if form.validate() == False:
+            flash('All fields are required.')
+            return render_template('contact.html',form=form)
+        else:
+            msg = Message(form.subject.data, sender='contact@example.com', recipients=['uwimonaevals@gmail.com'])
+            msg.body = """
+            From: %s <%s> 
+            To: %s <%s>
+            %s
+            """ % (form.name.data, form.email.data, form.message.data)
+            mail.send(msg)
+            
+            return 'Form Submitted.'
     elif request.method == 'GET':
         return render_template('contact.html',form=form)
 
@@ -74,7 +95,12 @@ def contact():
 @app.route('/profile/edit/')
 def profileedit(name=None):
     """Render the website's edit profile page."""
-    return render_template('profileedit.html',name=name)
+    form = ProfileForm()
+    if request.method == 'POST':
+        return 'Form posted.'
+
+    elif request.method == 'GET':
+        return render_template('profileedit.html', form=form)
     
 
 
