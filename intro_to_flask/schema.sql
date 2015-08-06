@@ -1,5 +1,6 @@
 
-CREATE TABLE officer (userid INT NOT NULL AUTO_INCREMENT UNIQUE, email_address VARCHAR(255), password VARCHAR(255), role VARCHAR(255), division VARCHAR(255), station VARCHAR(255), name VARCHAR(255), PRIMARY KEY (userid));
+
+CREATE TABLE officer (userid INT NOT NULL AUTO_INCREMENT UNIQUE, email_address VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, role VARCHAR(255), division VARCHAR(255), station VARCHAR(255), name VARCHAR(255), PRIMARY KEY (userid));
 
 CREATE TABLE fullname ( userid INT NOT NULL AUTO_INCREMENT UNIQUE, first_name VARCHAR(255), last_name VARCHAR(255), FOREIGN KEY (userid) REFERENCES officer(userid));
 
@@ -25,13 +26,13 @@ CREATE TABLE _group ( groupid INT NOT NULL AUTO_INCREMENT, group_name VARCHAR(25
 
 CREATE TABLE broadcast (broadcastid INT NOT NULL AUTO_INCREMENT, content VARCHAR(255), issuer INT NOT NULL, recipient INT NOT NULL, group_recipient INT NOT NULL, date_issued DATETIME, FOREIGN KEY (recipient ) REFERENCES officer(userid), FOREIGN KEY (issuer ) REFERENCES officer(userid), FOREIGN KEY (group_recipient) REFERENCES _group(groupid ), PRIMARY KEY(broadcastid));
 
-CREATE TABLE profile (profileid INT NOT NULL AUTO_INCREMENT, picture BLOB, home_address VARCHAR(255), gender VARCHAR(255), first_name VARCHAR(255), middle_name VARCHAR(255), last_name VARCHAR(255), weapon_of_choice VARCHAR(255), height VARCHAR(255), weight VARCHAR(255), build VARCHAR(255), complexion VARCHAR(255), hair_colour VARCHAR(255), eye_colour VARCHAR(255), ethnicity VARCHAR(255), scars VARCHAR(255), work_address VARCHAR(255), work_contact_no VARCHAR(255), job_title VARCHAR(255), mother_first_name VARCHAR(255), mother_maiden_name VARCHAR(255), mother_surname VARCHAR(255), mother_address VARCHAR(255), mother_nationality VARCHAR(255), father_first_name VARCHAR(255), father_surname VARCHAR(255), father_address VARCHAR(255), father_nationality VARCHAR(255), PRIMARY KEY (profileid));
+CREATE TABLE profile (profileid INT NOT NULL AUTO_INCREMENT UNIQUE, picture BLOB, home_address VARCHAR(255), gender VARCHAR(255), first_name VARCHAR(255), middle_name VARCHAR(255), last_name VARCHAR(255), weapon_of_choice VARCHAR(255), height DOUBLE(4,2), weight DOUBLE(6,2)), build VARCHAR(255), complexion VARCHAR(255), hair_colour VARCHAR(255), eye_colour VARCHAR(255), ethnicity VARCHAR(255), scars VARCHAR(255), work_address VARCHAR(255), work_contact_no VARCHAR(255), job_title VARCHAR(255), mother_first_name VARCHAR(255), mother_maiden_name VARCHAR(255), mother_surname VARCHAR(255), mother_address VARCHAR(255), mother_nationality VARCHAR(255), father_first_name VARCHAR(255), father_surname VARCHAR(255), father_address VARCHAR(255), father_nationality VARCHAR(255),date_create DATETIME, PRIMARY KEY (profileid));
 
 CREATE TABLE witness ( witnessid INT NOT NULL AUTO_INCREMENT, witness_info  INT NOT NULL, witness_statement VARCHAR(255), dates_available DATETIME, reportid INT NOT NULL, FOREIGN KEY (witness_info) REFERENCES profile (profileid), FOREIGN KEY (reportid) REFERENCES report(reportid), PRIMARY KEY(witnessid));
 
 CREATE TABLE prof_aliases (profileid INT NOT NULL AUTO_INCREMENT, aliases VARCHAR(255), PRIMARY KEY (profileid));
 
-CREATE TABLE person_of_interest (poiid INT NOT NULL AUTO_INCREMENT, profileid INT NOT NULL, reportid INT, FOREIGN KEY (profileid) REFERENCES profile(profileid), FOREIGN KEY (reportid ) REFERENCES report(reportid), PRIMARY KEY(poiid));
+CREATE TABLE person_of_interest (poiid INT NOT NULL AUTO_INCREMENT, profileid INT NOT NULL, reportid INT, FOREIGN KEY (reportid ) REFERENCES report(reportid), PRIMARY KEY(poiid));
 
 CREATE TABLE reference_no (reportid INT NOT NULL AUTO_INCREMENT, crime_reference_number VARCHAR(255), PRIMARY KEY (reportid));
 

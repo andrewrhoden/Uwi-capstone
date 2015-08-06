@@ -1,7 +1,7 @@
 #<<<<<<< HEAD
 from flask.ext.wtf import Form , validators #, TextField, TextAreaField, SubmitField, validators, ValidationError, PasswordField
 from wtforms import TextField, BooleanField, TextAreaField, SubmitField, FileField, validators
-from models import db, Officer
+from models import db, Officer, Profile
 #from wtforms.validators import Required
 #
 """

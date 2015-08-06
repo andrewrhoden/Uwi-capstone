@@ -6,29 +6,21 @@ This file creates your application.
 """
 
 #from intro_to_flask import app
-from flask import Flask
-from flask import render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, session, request, redirect, url_for, flash, abort
 from models import db
 import jinja2
 from forms import ContactForm, ProfileForm
 from flask.ext.mail import Message, Mail
 
-#<<<<<<< HEAD
 app = Flask(__name__, template_folder='templates')
 app.jinja_loader = jinja2.FileSystemLoader('templates')
 
-#app.secret_key = "tkssmartkodecodeWorldProdigy232323421@1127@6206birthd#2342)2**("
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqldb://root:root@localhost/finalproject'
 
-#=======
-#<<<<<<< HEAD
-#app.config['SECRET_KEY'] = '^534jskjfiuwrgskfmnb09872wvdbjm@76?*&'
-#=======
-#app = Flask(__name__)
+db.init_app(app)
 
 app.secret_key = "tkssmartkodecodeWorldProdigy232323421@1127@6206birthd#2342)2**("
 
-#from flask.ext.mysqldb import MySQL
-#app = Flask(__name__)
 
 mail = Mail()
 app.config["MAIL_SERVER"] = "smtp.live.com"
@@ -68,6 +60,7 @@ def about(name=None):
 def profile(name=None):
     """Render the website's profile page."""
     return render_template('profile.html',name=name)
+    
     
 @app.route('/contact/', methods=['GET', 'POST'])
 def contact():
