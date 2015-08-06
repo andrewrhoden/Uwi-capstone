@@ -7,7 +7,7 @@ This file creates your application.
 
 #from intro_to_flask import app
 from flask import Flask, render_template, session, request, redirect, url_for, flash, abort
-from models import db
+from models import *
 import jinja2
 from forms import ContactForm, ProfileForm
 from flask.ext.mail import Message, Mail
@@ -85,11 +85,14 @@ def contact():
         return render_template('contact.html',form=form)
 
 
-@app.route('/profile/edit/')
+@app.route('/profile/edit/', methods=['GET', 'POST'])
 def profileedit(name=None):
     """Render the website's edit profile page."""
     form = ProfileForm()
     if request.method == 'POST':
+        profile = Profile(form.picture,form.home_address,form.gender,form.first_name ,form.middle_name,form.last_name,form.weapon_of_choice ,form.height,form.weight,form.build,form.complexion,form.hair_colour ,form.eye_colour ,form.ethnicity ,form.scars ,form.work_address ,form.work_contact_no,form.job_title ,form.mother_first_name ,form.mother_maiden_name,form.mother_surname,form.mother_address,form.mother_nationality,form.father_first_name,form.father_surname ,form.father_address,form.father_nationality,form.date_create)
+        db.session.add(profile)
+        db.session.commit()
         return 'Form posted.'
 
     elif request.method == 'GET':
@@ -113,7 +116,7 @@ def reportadd(name=None):
     """Render the website's about page."""
     return render_template('reportedit.html',name=name)
 
-@app.route('/signup', methods=['GET', 'POST'])
+@app.route('/login/', methods=['GET', 'POST'])
 def signup():
     form = SignupForm()
    
