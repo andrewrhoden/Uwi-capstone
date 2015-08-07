@@ -11,6 +11,7 @@ from models import *
 import jinja2
 from forms import ContactForm, ProfileForm
 from flask.ext.mail import Message, Mail
+from datetime import datetime
 
 app = Flask(__name__, template_folder='templates')
 app.jinja_loader = jinja2.FileSystemLoader('templates')
@@ -90,7 +91,12 @@ def profileedit(name=None):
     """Render the website's edit profile page."""
     form = ProfileForm()
     if request.method == 'POST':
-        profile = Profile(form.picture,form.home_address,form.gender,form.first_name ,form.middle_name,form.last_name,form.weapon_of_choice ,form.height,form.weight,form.build,form.complexion,form.hair_colour ,form.eye_colour ,form.ethnicity ,form.scars ,form.work_address ,form.work_contact_no,form.job_title ,form.mother_first_name ,form.mother_maiden_name,form.mother_surname,form.mother_address,form.mother_nationality,form.father_first_name,form.father_surname ,form.father_address,form.father_nationality,form.date_create)
+        profile = Profile(form.picture,form.home_address,form.gender,
+        form.first_name ,form.middle_name,form.last_name,form.weapon_of_choice ,
+        form.height,form.weight,form.build,form.complexion,form.hair_colour ,form.eye_colour ,
+        form.ethnicity ,form.scars ,form.work_address ,form.work_contact_no,form.job_title ,form.mother_first_name 
+        ,form.mother_maiden_name,form.mother_surname,form.mother_address,form.mother_nationality,
+        form.father_first_name,form.father_surname ,form.father_address,form.father_nationality, datetime.now())
         db.session.add(profile)
         db.session.commit()
         return 'Form posted.'

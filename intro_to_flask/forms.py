@@ -52,6 +52,7 @@ class ProfileForm(Form):
     first_name = TextField("First Name")
     middle_name = TextField("Middle Name")
     last_name = TextField("Last Name")
+    home_address = TextAreaField("Home Address")
     weapon_of_choice = TextField("Weapon Of Choice")
     height = TextField("Height")
     weight = TextField("Weight")

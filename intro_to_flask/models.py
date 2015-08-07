@@ -56,9 +56,9 @@ class Profile(db.Model):
     father_surname = db.Column(db.VARCHAR(255))
     father_address = db.Column(db.VARCHAR(255))
     father_nationality = db.Column(db.VARCHAR(255))
-    date_create = db.Column(db.DATETIME)
+    date_created = db.Column(db.DATETIME)
     
-    def __init__(self, profileid,picture,home_address,gender,first_name ,middle_name,last_name,weapon_of_choice ,height,weight,build,complexion
+    def __init__(self,picture,home_address,gender,first_name ,middle_name,last_name,weapon_of_choice ,height,weight,build,complexion
     ,hair_colour 
     ,eye_colour 
     ,ethnicity 
@@ -75,10 +75,9 @@ class Profile(db.Model):
     ,father_surname 
     ,father_address
     ,father_nationality
-    ,date_create):
-        self.profileid =profileid
+    ,date_created):
         self.picture=picture 
-        self.home_address=home_addres
+        self.home_address=home_address
         self.gender =gender 
         self.first_name =first_name 
         self.middle_name=middle_name
@@ -104,7 +103,7 @@ class Profile(db.Model):
         self.father_surname=father_surname  
         self.father_address=father_address
         self.father_nationality=father_nationality
-        self.date_create=date_create
+        self.date_created=date_created
         
     def __repr__(self):
         return '<User %r>' % self.userid
