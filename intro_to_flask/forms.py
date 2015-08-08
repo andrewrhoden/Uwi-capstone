@@ -1,6 +1,6 @@
 #<<<<<<< HEAD
-from flask.ext.wtf import Form , validators #, TextField, TextAreaField, SubmitField, validators, ValidationError, PasswordField
-from wtforms import TextField, BooleanField, TextAreaField, SubmitField, FileField, validators
+from flask.ext.wtf import Form ,fields, validators #, TextField, TextAreaField, SubmitField, validators, ValidationError, PasswordField
+from wtforms import TextField, BooleanField, TextAreaField, SubmitField, FileField, PasswordField, validators
 from models import db, Officer, Profile
 #from wtforms.validators import Required
 #
@@ -45,6 +45,11 @@ class ContactForm(Form):
   subject = TextField("Subject", [validators.Required("Please enter a subject.")])
   message = TextAreaField("Message", [validators.Required("Please enter a message.")])
   submit = SubmitField("Send")
+  
+class LoginForm(Form):
+	email = TextField("Email", [validators.Required("Please enter your email address."), validators.Email("Please enter a valid email address.")])
+	password = PasswordField('Password', [validators.Required("Please enter a password.")])
+	submit = SubmitField("Login")  
 
 class ProfileForm(Form):
     picture = FileField("Photo")

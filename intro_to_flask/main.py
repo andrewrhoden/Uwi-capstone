@@ -9,7 +9,7 @@ This file creates your application.
 from flask import Flask, render_template, session, request, redirect, url_for, flash, abort
 from models import *
 import jinja2
-from forms import ContactForm, ProfileForm
+from forms import *
 from flask.ext.mail import Message, Mail
 from datetime import datetime
 
@@ -49,7 +49,7 @@ def testdb():
 @app.route('/')
 def home(name=None):
     """Render the website's home page."""
-    return render_template('home2.html',name=name)
+    return render_template('home.html',name=name)
     
 
 @app.route('/about/')
@@ -106,10 +106,15 @@ def profileedit(name=None):
     
 
 
-@app.route('/login/')
-def login(name=None):
-    """Render the website's login page."""
-    return render_template('login.html',name=name)
+@app.route('/login/', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+
+    if request.method == 'POST':
+        if form.validate() == False:
+            flash('All fields are required.')
+            return render_template('login.html', form=form)
+    return render_template('login.html',form=form)
     
     
 @app.route('/report/')

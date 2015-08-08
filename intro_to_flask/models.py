@@ -76,33 +76,33 @@ class Profile(db.Model):
     ,father_address
     ,father_nationality
     ,date_created):
-        self.picture=picture 
-        self.home_address=home_address
-        self.gender =gender 
-        self.first_name =first_name 
-        self.middle_name=middle_name
-        self.last_name  =last_name  
-        self.weapon_of_choice =weapon_of_choice 
-        self.height =height 
-        self.weight=weight
-        self.build=build
-        self.complexion=complexion
-        self.hair_colour =hair_colour 
-        self.eye_colour=eye_colour  
-        self.ethnicity =ethnicity 
-        self.scars =scars 
-        self.work_address =work_address 
-        self.work_contact_no=work_contact_no
-        self.job_title =job_title 
-        self.mother_first_name =mother_first_name 
-        self.mother_maiden_name=mother_maiden_name
-        self.mother_surname =mother_surname 
-        self.mother_address=mother_address
-        self.mother_nationality =mother_nationality 
-        self.father_first_name=father_first_name
-        self.father_surname=father_surname  
-        self.father_address=father_address
-        self.father_nationality=father_nationality
+        self.picture=picture.data 
+        self.home_address=home_address.data
+        self.gender =gender.data
+        self.first_name =first_name.data
+        self.middle_name=middle_name.data
+        self.last_name  =last_name.data  
+        self.weapon_of_choice =weapon_of_choice.data 
+        self.height =height.data
+        self.weight=weight.data
+        self.build=build.data.lower()
+        self.complexion=complexion.data.lower()
+        self.hair_colour =hair_colour.data.lower() 
+        self.eye_colour=eye_colour.data.lower()  
+        self.ethnicity =ethnicity.data.lower() 
+        self.scars =scars.data.lower() 
+        self.work_address =work_address.data.lower() 
+        self.work_contact_no=work_contact_no.data.lower()
+        self.job_title =job_title.data.lower() 
+        self.mother_first_name =mother_first_name.data.lower() 
+        self.mother_maiden_name=mother_maiden_name.data.lower()
+        self.mother_surname =mother_surname.data.lower() 
+        self.mother_address=mother_address.data.lower()
+        self.mother_nationality =mother_nationality.data.lower() 
+        self.father_first_name=father_first_name.data.lower()
+        self.father_surname=father_surname.data.lower()
+        self.father_address=father_address.data.lower()
+        self.father_nationality=father_nationality.data.lower()
         self.date_created=date_created
         
     def __repr__(self):
