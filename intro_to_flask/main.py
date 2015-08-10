@@ -56,6 +56,11 @@ def home(name=None):
 def about(name=None):
     """Render the website's about page."""
     return render_template('about.html')
+    
+@app.route('/forms/')
+def forms(name=None):
+    """Render the website's forms page."""
+    return render_template('forms.html')
 
 @app.route('/profile/')
 def profile(name=None):
@@ -141,6 +146,31 @@ def signup():
         return "[1] Create a new user [2] sign in the user [3] redirect to the user's profile"
     elif request.method == 'GET':
         return render_template('signup.html', form=form)
+        
+    
+    """
+        Search Feature To Query Specific Similarities Within The Database
+    """    
+@app.route('/search/', methods=['GET', 'POST'])
+def search(name=None):
+    form = UserSearch()
+    if request.method == 'POST':
+        return 'Searching...'
+    """Render the website's UserSearch page."""
+    return render_template('search.html',form=form)
+    
+    
+    """
+        Pattern Identified Feature To View Cases Or Reports With A High Degree Of Similarity
+    """ 
+@app.route('/patterns/')
+def patterns(name=None):
+    """Render the website's about page."""
+    return render_template('patterns.html',name=name)
+        
+        
+        
+        
  ###
 # The functions below should be applicable to all Flask apps.
 ###

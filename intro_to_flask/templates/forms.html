@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+    <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='forms.css') }}"/>
+    <div id='formoptions'>
+        <div id='availableforms'>
+            <button class='btn btn-primary btn-left' > Add Person Of Interest</button>
+            <button class='btn btn-primary btn-right'> Add Crime Report</button>
+        </div>
+        
+        <div id='unavailableforms'>
+            <button class='btn btn-primary btn-left' > Add Person Of Interest</button>
+            <button class='btn btn-primary btn-right'> Add Crime Report</button>
+        </div>
+    </div>
+{% endblock %}

@@ -80,3 +80,7 @@ class ProfileForm(Form):
     father_address = TextAreaField("Father's Address")
     father_nationality = TextField("Father's Nationality")
     submit = SubmitField("Update")
+    
+class UserSearch(Form):
+	searchField = TextField("Search")
+	submit = SubmitField("Search") 
