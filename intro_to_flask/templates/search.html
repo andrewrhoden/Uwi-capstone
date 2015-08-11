@@ -5,7 +5,28 @@
         {{ form.hidden_tag() }}
         
         <div id='searchinputs'>
-            {{ form.searchField }}
+            <span>
+                {{ form.searchField }}
+            </span>
+            <span>
+                <select name="criterion">
+                    <option value="complexion" name="ethnicity">Complexion</option>
+                    <option value="ethnicity" name="ethnicity">Ethnicity</option> 
+                    <option value="weapon_of_choice" name="weapon">Weapon Used</option>
+                    <option value="profileid" name="profileid">Profileid</option>
+                    <option value="home_address" name="home_address">Home Address</option>
+                    <option value="gender" name="gender">Gender</option>
+                    <option value="first_name" name="first_name">First Name</option>
+                    <option value="middle_name" name="middle_name">Middle Name</option>
+                    <option value="last_name" name="last_name">Last Name</option>
+                    <option value="height" name="height">Height</option>
+                    <option value="weight" name="weight">Weight</option>
+                    <option value="build" name="build">Build</option>
+                    <option value="hair_colour" name="hair_colour">Hair Colour</option>
+                    <option value="eye_colour" name="eye_colour">Eye Colour</option>
+                    <option value="scars" name="scars">Scars</option>
+                    
+                </select></span>
             {{ form.submit }}
         </div>
         <div id='searchResults'>

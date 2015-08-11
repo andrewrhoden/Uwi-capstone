@@ -3,13 +3,13 @@
     <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='forms.css') }}"/>
     <div id='formoptions'>
         <div id='availableforms'>
-            <button class='btn btn-primary btn-left' > Add Person Of Interest</button>
-            <button class='btn btn-primary btn-right'> Add Crime Report</button>
+            <a  href="/profile/edit/" ><button class='btn btn-primary btn-left'> Add Person Of Interest</button></a>
+            <a  href="/report/edit/" ><button class='btn btn-primary btn-right'> Add Crime Report</button></a>
         </div>
         
         <div id='unavailableforms'>
-            <button class='btn btn-primary btn-left' > Add Person Of Interest</button>
-            <button class='btn btn-primary btn-right'> Add Crime Report</button>
+            <button class='btn btn-primary btn-left' > Add Witness </button>
+            <button class='btn btn-primary btn-right'> Add Witness Statement </button>
         </div>
     </div>
 {% endblock %}

@@ -12,7 +12,7 @@ import jinja2
 from forms import *
 from flask.ext.mail import Message, Mail
 from datetime import datetime
-
+from flask.ext.mysqldb import MySQL
 app = Flask(__name__, template_folder='templates')
 app.jinja_loader = jinja2.FileSystemLoader('templates')
 
@@ -32,7 +32,14 @@ app.config["MAIL_PASSWORD"] = 'uwimonas;'
 
 mail.init_app(app)
 
-#mysql = MySQL(app)
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'root'
+app.config['MYSQL_DB'] = 'finalproject'
+
+
+mysql = MySQL(app)
+
+
 
 @app.route('/testdb/')
 def testdb():
@@ -155,7 +162,14 @@ def signup():
 def search(name=None):
     form = UserSearch()
     if request.method == 'POST':
-        return 'Searching...'
+        term = request.form['searchField']
+        drop_down = request.form['criterion']
+        se_term = "'%"+term+"%'"
+        cur = mysql.connection.cursor()
+        cur.execute('''SELECT * FROM profile WHERE '''+drop_down+''' LIKE %s '''%(se_term))
+        rv = cur.fetchall()
+        return str(rv)
+        # return 'Searching...'
     """Render the website's UserSearch page."""
     return render_template('search.html',form=form)
     
