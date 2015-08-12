@@ -29,7 +29,12 @@
                 </select></span>
             {{ form.submit }}
         </div>
-        <div id='searchResults'>
+            <div id='searchResults'>
+                {% for i in rv %}
+	                <div>
+	                    {{ i }}
+	                </div>
+                {% endfor %}
             
         </div>
         

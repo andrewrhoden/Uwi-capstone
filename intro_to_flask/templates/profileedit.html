@@ -3,7 +3,7 @@
     <h2>Profile Form</h2>
     
     
-    <form action="{{ url_for('profileedit') }}" method=post>
+    <form action="{{ url_for('profileedit') }}" method="post" enctype=multipart/form-data>
         {{ form.hidden_tag() }}
         <div id="profilecontainer">
             <div class='profiledetails'>
